@@ -1,0 +1,26 @@
+
+.app-wrapper {
+	display: flex;
+	width: 100%;
+
+	/* 
+	 * common styles shared between the app
+	 */
+	.common-styles {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 500px;
+		color: #0000ff;
+		font-size: 16px;
+	}
+	.app-loader {
+		@extend .common-styles;
+		color: blue;
+	}
+	.server-error-message {
+		@extend .common-styles;
+		color: #ed143d;
+	}
+}

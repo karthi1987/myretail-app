@@ -1,0 +1,39 @@
+
+/*
+ * Carousel component styles
+ */
+
+.image-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 55px;
+	.hero-image {
+		display: flex;
+	}
+	.carousel-wrapper {
+		margin-top: 118px;
+		.slick-slider {
+			height: 70px;
+			.slick-list {
+				height: 70px;
+				.slick-track {
+					height: 70px;
+				}
+			}
+			.slick-next {
+				&:before {
+					content: "\2192";
+					color: #ccc;
+				}
+			}
+			.slick-prev {
+				&:before {
+					content: "\2190";
+					color: #ccc;
+				}
+			}
+		}
+	}
+}
