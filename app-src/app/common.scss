@@ -1,8 +1,8 @@
 
 .app-wrapper {
 	display: flex;
+	flex-flow: column wrap;
 	width: 100%;
-
 	/* 
 	 * common styles shared between the app
 	 */

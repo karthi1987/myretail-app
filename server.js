@@ -11,8 +11,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var request = require('request');
 var _ = require('lodash');
+var serverConfig = require('./server.config.js');
 
-var LOCAL_PATH = 'localhost';
+var LOCAL_PATH = serverConfig.PORT.LOCAL_PATH;
 
 const ROOT_PATH = path.resolve(__dirname);
 
@@ -71,10 +72,10 @@ proxy.on('error', function (err, req, res) {
     res.end('Something went wrong. And we are reporting a custom error message.');
 });
 
-app.listen(8080, LOCAL_PATH, function(err, result){
+app.listen( serverConfig.PORT, serverConfig.LOCAL_PATH, function(err, result){
     if(err){
         console.log(err);
     }
 
-    console.log('server listening at ' + LOCAL_PATH + ':8080');
+    console.log('server listening at ' + serverConfig.PORT.LOCAL_PATH + ':' + serverConfig.PORT );
 });

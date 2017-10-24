@@ -1,7 +1,7 @@
-import testBaseUI from './ui/base.js';
+import TestProductsComponent from './ui/base.js';
 
-const testUI = () => {
-	testBaseUI();
+const TestComponents = () => {
+	TestProductsComponent();
 }
 
-module.exports = testUI;
+module.exports = TestComponents;

@@ -39,7 +39,6 @@
 	.content-left {
 		display: flex;
 		flex-flow: column wrap;
-		flex-grow: 1;
 		order: 1;
 		width: 50%;
 		padding: 0 0 0 4%;
@@ -107,34 +106,33 @@
 	.content-right {
 		display: flex;
 		flex-flow: column wrap;
-		flex-grow: 1;
 		order: 2;
 		width: 43%;
 		padding: 0 2% 0 0;
 
 		@include breakpoint( tablet ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 		@include breakpoint( iphone6plus ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 		@include breakpoint( iphone5s ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 		@include breakpoint( phablet ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 		@include breakpoint( mobileonly ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 
@@ -162,6 +160,41 @@
 					background-position: 0 4px;
 					background-image: url(../../../img/product-sprite.png);
 					padding-left: 25px;
+					@include breakpoint( tablet ) {
+						width: 250px;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						height: 30px;
+						white-space: nowrap;
+					}
+					@include breakpoint( iphone6plus ) {
+						width: 250px;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						height: 30px;
+						white-space: nowrap;
+					}
+					@include breakpoint( iphone5s ) {
+						width: 250px;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						height: 30px;
+						white-space: nowrap;
+					}
+					@include breakpoint( phablet ) {
+						width: 250px;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						height: 30px;
+						white-space: nowrap;
+					}
+					@include breakpoint( mobileonly ) {
+						width: 250px;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						height: 30px;
+						white-space: nowrap;
+					}
 				}
 			}
 		}
@@ -234,13 +267,33 @@
 		.product-buttons {
 			display: flex;
 			flex-flow: row nowrap;
+			justify-content: space-evenly;
 		    margin: 30px 0;
+		    width: 100%;
 		    .pickup-store {
 		    	background: #080808;
+				@include breakpoint( iphone6plus ) {
+					font-size: 15px;
+				}
+				@include breakpoint( iphone5s ) {
+					font-size: 15px;
+				}
+				@include breakpoint( phablet ) {
+					font-size: 15px;
+				}
 		    }
 		    .add-to-cart {
 		    	background: #cc0202;
 		    	margin-left: 30px;
+				@include breakpoint( iphone6plus ) {
+					font-size: 15px;
+				}
+				@include breakpoint( iphone5s ) {
+					font-size: 15px;
+				}
+				@include breakpoint( phablet ) {
+					font-size: 15px;
+				}
 		    }
 		}
 		.product-return-policy {
@@ -266,7 +319,8 @@
 		.product-registry {
 			display: flex;
 			flex-direction: row;
-			justify-content: flex-start;
+			width: 100%;
+			justify-content: space-evenly;
 		    align-items: flex-start;
 			margin-top: 30px;
 			.add-to-registry, .add-to-list, .share {
@@ -308,27 +362,27 @@
 
 		@include breakpoint( tablet ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 		@include breakpoint( iphone6plus ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 		@include breakpoint( iphone5s ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 		@include breakpoint( phablet ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 		@include breakpoint( mobileonly ) {
 			width: 75%;
-			margin-top: 2%;
+			margin-top: 5%;
 			padding: 0;
 		}
 

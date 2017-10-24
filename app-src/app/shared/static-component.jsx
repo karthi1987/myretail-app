@@ -118,7 +118,7 @@ const Buttons = ( { name, label } ) => {
 
 	if ( name ) {
 		return ( 
-			<button width="80" height="40" className={ classnames(
+			<button className={ classnames(
 				'button-default',
 				{
 					'pickup-store': name === 'pickupStore',

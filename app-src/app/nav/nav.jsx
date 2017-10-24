@@ -8,7 +8,6 @@ import {
 	ProductTitle, 
 	ProductPrice, 
 	ProductPromotions, 
-	ProductQuantity, 
 	ProductButtons,
 	ProductReturnPolicy,
 	ProductRegistryButtons,
@@ -16,7 +15,9 @@ import {
 	ProductReviews,
 	NullComponent 
 } from '../shared/static-component';
+
 import HeroImageAndItsChildren from '../shared/image-carousel';
+import ProductQuantity from '../shared/product-quantity';
 
 /*
  * scss

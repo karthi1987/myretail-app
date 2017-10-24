@@ -3,8 +3,12 @@ import { render } from 'react-dom';
 
 import PropTypes from 'prop-types'; // ES6
 
+//Shared component
 import { ProductButtons } from './static-component';
 
+/*
+ * Product Buttons Component
+ */
 
 class ProductButtonsComponent extends Component {
 
@@ -22,7 +26,7 @@ class ProductButtonsComponent extends Component {
 // Specifies the default values for props:
 ProductButtons.defaultProps = {
   buttons: {
-		purchasingChannelCode: "0"
+	purchasingChannelCode: "0"
   }
 };
 

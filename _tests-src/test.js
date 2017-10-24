@@ -1,8 +1,8 @@
 const serverConfig = require( '../server.config' );
 const app = require( './server.js' );
 
-const testApi = require('./api.js');
-const testUI = require('./ui.js');
+const ApiTest = require('./api.js');
+const TestComponents = require('./ui.js');
 
 /*
  * Start the server and run the tests
@@ -17,6 +17,12 @@ const server = app.listen( serverConfig.LOCAL_PATH, ( error ) => {
 	}
 } );
 
-testUI();
+/*
+* Render the UI Components
+*/
+TestComponents();
 
+/*
+ * Close the server
+ */
 server.close();

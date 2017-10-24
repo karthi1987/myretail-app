@@ -4,10 +4,17 @@ require('es6-promise').polyfill();
 var webpack = require('webpack');
 var path = require('path');
 const ROOT_PATH = path.resolve(__dirname);
+const APP_PATH = path.resolve( ROOT_PATH, 'app-src/app');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
 module.exports = {
-  entry: './app-src/app/app.jsx',
+  entry: {
+    app: [
+      'babel-polyfill',
+      'whatwg-fetch',
+       path.resolve( APP_PATH, 'app.jsx' )
+    ]
+  },
   output: {
     path: path.resolve(__dirname, "js"),
     publicPath: "js/",

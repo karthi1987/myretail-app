@@ -3,35 +3,29 @@ require('es6-promise').polyfill();
 import { expect } from 'chai';
 //import { sinon, spy } from 'sinon';
 import { mount, render, shallow } from 'enzyme';
-
 const sinon = require('sinon');
-
 import React from 'react';
-//import clone from 'lodash/clone';
 
+//Mock Data
 const products = require('json-loader!../../mock/json/app-home.json');
 
-//import { ProductTitle } from 'app/shared/static-component';
-
+//Shared Component
 import TestComponent from 'app/shared/test-component';
 import ProductButtonsComponent from 'app/shared/product-buttons';
 
-const testBaseUI = () => {
+/*
+ *  Test Components with UI functions
+ */
 
-	describe('a passing test', () => {
-	  it('should pass', () => {
-	    expect(true).to.be.true;
-	  });
-	});
+const TestProductsComponent = () => {
 
 	describe( 'Render Component', () => {
 		const fetchProductData = sinon.spy();
 		const fetchProductButtons = sinon.spy();
 
 		const mountProductTitle = () => {
-			const productsInfo = "Name";
 			return mount(
-				<TestComponent clickMe={ fetchProductData } title="name" />
+				<TestComponent clickMe={ fetchProductData } title="product title" />
 			);
 		};
 
@@ -43,15 +37,14 @@ const testBaseUI = () => {
 			done();
 		});
 
-
 		const productButtons = mount(
 			<ProductButtonsComponent 
 				buttons={ products }
-				clickMe={ fetchProductButtons }
+				triggerClick={ fetchProductButtons }
 			/>
 		);
 
-		it ( 'check if the purchasingChannelCode is 0 then Add to cart and pick up in store should be displayed', ( done ) => {
+		it ( 'check if the purchasingChannelCode is 0 then Add to cart and Pick up instore should be displayed', ( done ) => {
 
 			productButtons.setProps({
 				buttons: {
@@ -65,7 +58,36 @@ const testBaseUI = () => {
 			done();
 		} )
 
+		it ( 'check if the purchasingChannelCode is 2 then display only Pick up instore', ( done ) => {
+
+			productButtons.setProps({
+				buttons: {
+					purchasingChannelCode: "2"
+				}
+			})
+
+			expect( productButtons.find('.pickup-store') ).to.have.length( 1 );
+			expect( productButtons.find('.add-to-cart') ).to.have.length( 0 );
+
+			done();
+		} )
+
+		it ( 'check if the purchasingChannelCode is 1 then display only Add to cart', ( done ) => {
+
+			productButtons.setProps({
+				buttons: {
+					purchasingChannelCode: "1"
+				}
+			})
+
+			expect( productButtons.find('.pickup-store') ).to.have.length( 0 );
+			expect( productButtons.find('.add-to-cart') ).to.have.length( 1 );
+
+			done();
+		} )
+
+
 	});
 }
 
-module.exports = testBaseUI;
+module.exports = TestProductsComponent;

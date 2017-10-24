@@ -47,12 +47,12 @@
 	'use strict';var serverConfig = __webpack_require__(1);
 	var app = __webpack_require__(2);
 
-	var testApi = __webpack_require__(4);
-	var testUI = __webpack_require__(8);
+	var ApiTest = __webpack_require__(4);
+	var TestComponents = __webpack_require__(8);
 
 	/*
-	                                  * Start the server and run the tests
-	                                  */
+	                                          * Start the server and run the tests
+	                                          */
 
 	var server = app.listen(serverConfig.LOCAL_PATH, function (error) {
 		if (error) {
@@ -63,8 +63,14 @@
 		}
 	});
 
-	testUI();
+	/*
+	    * Render the UI Components
+	    */
+	TestComponents();
 
+	/*
+	                   * Close the server
+	                   */
 	server.close();
 
 /***/ },
@@ -102,11 +108,11 @@
 	var expect = __webpack_require__(6).expect;
 	var request = __webpack_require__(7);
 
-	var testApi = function testApi(server) {
+	var ApiTest = function ApiTest(server) {
 
 	};
 
-	module.exports = testApi;
+	module.exports = ApiTest;
 
 /***/ },
 /* 5 */
@@ -132,11 +138,11 @@
 
 	'use strict';var _base = __webpack_require__(9);var _base2 = _interopRequireDefault(_base);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
-	var testUI = function testUI() {
+	var TestComponents = function TestComponents() {
 		(0, _base2.default)();
 	};
 
-	module.exports = testUI;
+	module.exports = TestComponents;
 
 /***/ },
 /* 9 */
@@ -148,34 +154,28 @@
 
 	var _enzyme = __webpack_require__(10);
 
-
-
 	var _react = __webpack_require__(11);var _react2 = _interopRequireDefault(_react);
 
 
 
 
 
-
 	var _testComponent = __webpack_require__(12);var _testComponent2 = _interopRequireDefault(_testComponent);
-	var _productButtons = __webpack_require__(15);var _productButtons2 = _interopRequireDefault(_productButtons);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}__webpack_require__(20).polyfill(); //import { sinon, spy } from 'sinon';
-	var sinon = __webpack_require__(21); //import clone from 'lodash/clone';
-	var products = __webpack_require__(22); //import { ProductTitle } from 'app/shared/static-component';
-	var testBaseUI = function testBaseUI() {
-		describe('a passing test', function () {
-			it('should pass', function () {
-				(0, _chai.expect)(true).to.be.true;
-			});
-		});
+	var _productButtons = __webpack_require__(19);var _productButtons2 = _interopRequireDefault(_productButtons);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}__webpack_require__(20).polyfill(); //import { sinon, spy } from 'sinon';
+	var sinon = __webpack_require__(21); //Mock Data
+	var products = __webpack_require__(22); //Shared Component
+	/*
+	 *  Test Components with UI functions
+	 */
+	var TestProductsComponent = function TestProductsComponent() {
 
 		describe('Render Component', function () {
 			var fetchProductData = sinon.spy();
 			var fetchProductButtons = sinon.spy();
 
 			var mountProductTitle = function mountProductTitle() {
-				var productsInfo = "Name";
 				return (0, _enzyme.mount)(
-				_react2.default.createElement(_testComponent2.default, { clickMe: fetchProductData, title: 'name' }));
+				_react2.default.createElement(_testComponent2.default, { clickMe: fetchProductData, title: 'product title' }));
 
 			};
 
@@ -187,15 +187,14 @@
 				done();
 			});
 
-
 			var productButtons = (0, _enzyme.mount)(
 			_react2.default.createElement(_productButtons2.default, {
 				buttons: products,
-				clickMe: fetchProductButtons }));
+				triggerClick: fetchProductButtons }));
 
 
 
-			it('check if the purchasingChannelCode is 0 then Add to cart and pick up in store should be displayed', function (done) {
+			it('check if the purchasingChannelCode is 0 then Add to cart and Pick up instore should be displayed', function (done) {
 
 				productButtons.setProps({
 					buttons: {
@@ -209,10 +208,39 @@
 				done();
 			});
 
+			it('check if the purchasingChannelCode is 2 then display only Pick up instore', function (done) {
+
+				productButtons.setProps({
+					buttons: {
+						purchasingChannelCode: "2" } });
+
+
+
+				(0, _chai.expect)(productButtons.find('.pickup-store')).to.have.length(1);
+				(0, _chai.expect)(productButtons.find('.add-to-cart')).to.have.length(0);
+
+				done();
+			});
+
+			it('check if the purchasingChannelCode is 1 then display only Add to cart', function (done) {
+
+				productButtons.setProps({
+					buttons: {
+						purchasingChannelCode: "1" } });
+
+
+
+				(0, _chai.expect)(productButtons.find('.pickup-store')).to.have.length(0);
+				(0, _chai.expect)(productButtons.find('.add-to-cart')).to.have.length(1);
+
+				done();
+			});
+
+
 		});
 	};
 
-	module.exports = testBaseUI;
+	module.exports = TestProductsComponent;
 
 /***/ },
 /* 10 */
@@ -233,34 +261,38 @@
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();var _react = __webpack_require__(11);var _react2 = _interopRequireDefault(_react);
 	var _reactDom = __webpack_require__(13);
 
-	var _propTypes = __webpack_require__(14);var _propTypes2 = _interopRequireDefault(_propTypes);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self, call) {if (!self) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call && (typeof call === "object" || typeof call === "function") ? call : self;}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;} // ES6
-	var
+	var _propTypes = __webpack_require__(14);var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	TestComponent = function (_Component) {_inherits(TestComponent, _Component);function TestComponent() {_classCallCheck(this, TestComponent);return _possibleConstructorReturn(this, (TestComponent.__proto__ || Object.getPrototypeOf(TestComponent)).apply(this, arguments));}_createClass(TestComponent, [{ key: 'render', value: function render()
+	var _staticComponent = __webpack_require__(15);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self, call) {if (!self) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call && (typeof call === "object" || typeof call === "function") ? call : self;}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;}
 
-			{
-				return (
-					_react2.default.createElement('div', { onClick: this.props.clickMe }, 'Hello World! ',
-						this.props.title));
+	/*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Product Title Test
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */var
+	ProductTestComponent = function (_Component) {_inherits(ProductTestComponent, _Component);function ProductTestComponent() {_classCallCheck(this, ProductTestComponent);return _possibleConstructorReturn(this, (ProductTestComponent.__proto__ || Object.getPrototypeOf(ProductTestComponent)).apply(this, arguments));}_createClass(ProductTestComponent, [{ key: 'render', value: function render()
+
+	    {
+	      return (
+	        _react2.default.createElement('div', { onClick: this.props.clickMe }, 'Product Title ',
+	          this.props.title));
 
 
-			} }]);return TestComponent;}(_react.Component);
+	    } }]);return ProductTestComponent;}(_react.Component);
 
 
 
 	// Specifies the default values for props:
-	TestComponent.defaultProps = {
-		title: 'Product Title' };
+	ProductTestComponent.defaultProps = {
+	  title: 'Product Title' };
 
 
-	TestComponent.propTypes = {
-		title: _react2.default.PropTypes.oneOfType([
-		_react2.default.PropTypes.string,
-		_react2.default.PropTypes.number]) };exports.default =
+	ProductTestComponent.propTypes = {
+	  title: _react2.default.PropTypes.oneOfType([
+	  _react2.default.PropTypes.string,
+	  _react2.default.PropTypes.number]) };exports.default =
 
 
 
-	TestComponent;
+	ProductTestComponent;
 
 /***/ },
 /* 13 */
@@ -278,56 +310,14 @@
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();var _react = __webpack_require__(11);var _react2 = _interopRequireDefault(_react);
-	var _reactDom = __webpack_require__(13);
-
-	var _propTypes = __webpack_require__(14);var _propTypes2 = _interopRequireDefault(_propTypes);
-
-	var _staticComponent = __webpack_require__(16);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self, call) {if (!self) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call && (typeof call === "object" || typeof call === "function") ? call : self;}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;} // ES6
-	var
-
-	ProductButtonsComponent = function (_Component) {_inherits(ProductButtonsComponent, _Component);function ProductButtonsComponent() {_classCallCheck(this, ProductButtonsComponent);return _possibleConstructorReturn(this, (ProductButtonsComponent.__proto__ || Object.getPrototypeOf(ProductButtonsComponent)).apply(this, arguments));}_createClass(ProductButtonsComponent, [{ key: 'render', value: function render()
-
-			{
-
-				return (
-					_react2.default.createElement('div', { onClick: this.props.clickMe },
-						_react2.default.createElement(_staticComponent.ProductButtons, { channelCode: this.props.buttons.purchasingChannelCode })));
-
-
-			} }]);return ProductButtonsComponent;}(_react.Component);
-
-
-
-	// Specifies the default values for props:
-	_staticComponent.ProductButtons.defaultProps = {
-		buttons: {
-			purchasingChannelCode: "0" } };
-
-
-
-	_staticComponent.ProductButtons.propTypes = {
-		buttons: _react2.default.PropTypes.oneOfType([
-		_react2.default.PropTypes.object,
-		_react2.default.PropTypes.number,
-		_react2.default.PropTypes.string]) };exports.default =
-
-
-
-	ProductButtonsComponent;
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.ErrorMessage = exports.NullComponent = exports.ProductReviews = exports.ProductHighlights = exports.ProductRegistryButtons = exports.ProductReturnPolicy = exports.ProductButtons = exports.ProductQuantity = exports.ProductPromotions = exports.ProductPrice = exports.ProductImage = exports.ProductTitle = undefined;
 	var _react = __webpack_require__(11);var _react2 = _interopRequireDefault(_react);
 	var _reactDom = __webpack_require__(13);
 
-	var _moment = __webpack_require__(17);var _moment2 = _interopRequireDefault(_moment);
+	var _moment = __webpack_require__(16);var _moment2 = _interopRequireDefault(_moment);
 
-	var _classnames = __webpack_require__(18);var _classnames2 = _interopRequireDefault(_classnames);
-	var _appConstants = __webpack_require__(19);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+	var _classnames = __webpack_require__(17);var _classnames2 = _interopRequireDefault(_classnames);
+	var _appConstants = __webpack_require__(18);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 
 	//scss
@@ -440,7 +430,7 @@
 
 		if (name) {
 			return (
-				_react2.default.createElement('button', { width: '80', height: '40', className: (0, _classnames2.default)(
+				_react2.default.createElement('button', { className: (0, _classnames2.default)(
 						'button-default',
 						{
 							'pickup-store': name === 'pickupStore',
@@ -619,19 +609,19 @@
 	ErrorMessage = ErrorMessage;
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("moment");
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = require("classnames");
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports) {
 
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var BREAKPOINT = exports.BREAKPOINT = {
@@ -652,6 +642,52 @@
 		NO_DATA_AVAILABLE: 'DATA NOT AVAILABLE FOR THIS PRODUCT, PLEASE TRY DIFFERENT PRODUCT.',
 		SERVER_FAILED: 'SERVER FAILED TO RESPONSE, PLEASE TRY AGAIN LATER...',
 		SUCCESS: 'SUCCESSFULLY DATA LOADED' };
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();var _react = __webpack_require__(11);var _react2 = _interopRequireDefault(_react);
+	var _reactDom = __webpack_require__(13);
+
+	var _propTypes = __webpack_require__(14);var _propTypes2 = _interopRequireDefault(_propTypes);
+
+
+	var _staticComponent = __webpack_require__(15);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self, call) {if (!self) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call && (typeof call === "object" || typeof call === "function") ? call : self;}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;} // ES6
+	//Shared component
+	/*
+	 * Product Buttons Component
+	 */var
+
+	ProductButtonsComponent = function (_Component) {_inherits(ProductButtonsComponent, _Component);function ProductButtonsComponent() {_classCallCheck(this, ProductButtonsComponent);return _possibleConstructorReturn(this, (ProductButtonsComponent.__proto__ || Object.getPrototypeOf(ProductButtonsComponent)).apply(this, arguments));}_createClass(ProductButtonsComponent, [{ key: 'render', value: function render()
+
+	    {
+
+	      return (
+	        _react2.default.createElement('div', { onClick: this.props.clickMe },
+	          _react2.default.createElement(_staticComponent.ProductButtons, { channelCode: this.props.buttons.purchasingChannelCode })));
+
+
+	    } }]);return ProductButtonsComponent;}(_react.Component);
+
+
+
+	// Specifies the default values for props:
+	_staticComponent.ProductButtons.defaultProps = {
+	  buttons: {
+	    purchasingChannelCode: "0" } };
+
+
+
+	_staticComponent.ProductButtons.propTypes = {
+	  buttons: _react2.default.PropTypes.oneOfType([
+	  _react2.default.PropTypes.object,
+	  _react2.default.PropTypes.number,
+	  _react2.default.PropTypes.string]) };exports.default =
+
+
+
+	ProductButtonsComponent;
 
 /***/ },
 /* 20 */

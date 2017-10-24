@@ -2,8 +2,8 @@ const asset = require('assert');
 const expect = require('chai').expect;
 const request = require('supertest');
 
-const testApi = ( server ) => {
+const ApiTest = ( server ) => {
 
 };
 
-module.exports = testApi;
+module.exports = ApiTest;

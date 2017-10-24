@@ -1,3 +1,4 @@
+@import '../../assets/scss/mixins.scss';
 
 /*
  * Carousel component styles
@@ -23,6 +24,21 @@
 			background-repeat: no-repeat;
 			margin-top: 80px;
 			cursor: pointer;
+			@include breakpoint( tablet ) {
+				visibility: hidden;
+			}
+			@include breakpoint( iphone6plus ) {
+				visibility: hidden;
+			}
+			@include breakpoint( iphone5s ) {
+				visibility: hidden;
+			}
+			@include breakpoint( phablet ) {
+				visibility: hidden;
+			}
+			@include breakpoint( mobileonly ) {
+				visibility: hidden;
+			}
 		}
 	}
 	.carousel-wrapper {

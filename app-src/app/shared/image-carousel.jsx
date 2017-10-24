@@ -45,7 +45,7 @@ class HeroImageAndItsChildren extends Component {
       const imageWithAlt = image.replace(/^[^_]+/,"");
       const heroImage = image.replace(imageWithAlt, "");
       //To do: update the hero image, since the alternate image and hero image are same
-      // wont be able to update the hero image
+      //Won't be able to update the hero image
       //this.setState( { heroImage: heroImage } );
     }
   }
