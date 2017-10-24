@@ -13,8 +13,6 @@ var request = require('request');
 var _ = require('lodash');
 var serverConfig = require('./server.config.js');
 
-var LOCAL_PATH = serverConfig.PORT.LOCAL_PATH;
-
 const ROOT_PATH = path.resolve(__dirname);
 
 var cookieJar = request.jar();
@@ -77,5 +75,5 @@ app.listen( serverConfig.PORT, serverConfig.LOCAL_PATH, function(err, result){
         console.log(err);
     }
 
-    console.log('server listening at ' + serverConfig.PORT.LOCAL_PATH + ':' + serverConfig.PORT );
+    console.log('server listening at ' + serverConfig.LOCAL_PATH + ':' + serverConfig.PORT );
 });
