@@ -37,9 +37,19 @@ Once webpack and gulp are setup globally. Open terminal:
 
 It will install all the dependencies, Once install is finished.
 
+### Settings
+
 Find `server.config.js` in root directory `myretail-app/`.
 
 In `server.config.js`, `LOCAL_PATH` by default will be localhost and `PORT` will be 8080. Change these according to your local development needs.
+
+Find `config.js` in root directory `myretail-app/js/`.
+
+In `config.js`, update lines `3` and `5` to the following:
+
+`const USE_MOCK_DATA = true;`
+
+`const VZ_AJAX_POST_TYPE = 'GET';`
 
 ### Run the local express server:
 
@@ -53,14 +63,6 @@ If you need to compile scss in `app-src/assets`, open a new tab, and from `myret
 
 `gulp build`
 
-Find `config.js` in root directory `myretail-app/js/`.
-
-In `config.js`, update lines `3` and `5` to the following:
-
-`const USE_MOCK_DATA = true;`
-
-`const VZ_AJAX_POST_TYPE = 'GET';`
-
 You should be good to go. Access the app by going to:
 
 `http://localhost:8080/myretail-app`
@@ -68,18 +70,14 @@ You should be good to go. Access the app by going to:
 ### For Prod deployment.
 
 we have a `webpack.config.js` and a `webpack.prod.config.js` file. We need to run the production config after work on the react app and before we push any react changes. The command for that is `npm run prod`. or `npm run build`.
+It will generate `app.js` and `app.min.js` files.
 
 ### To Test the component.
 
 Run the command in terminal `npm run build-test` and `npm run test`, It will test all the test suites and generate the report, reports are visible at the terminal.
-
 
 ### Acknowledgements
 
 I'm grateful to the author of slick-carousel project which i have utilized for the product image carousel:
 
 * [@akiran](https://github.com/akiran/react-slick)
-
-
-:octopus:
-
