@@ -81,3 +81,10 @@ Run the command in terminal `npm run build-test` and `npm run test`, It will tes
 I'm grateful to the author of slick-carousel project which i have utilized for the product image carousel:
 
 * [@akiran](https://github.com/akiran/react-slick)
+
+### Remove proxy for the carousel styles
+
+I'm using the product image carousel styles from cdn hosted files, incase if you notice the carousel styles are misaligned, please let the cdnjs provide the styles by turning off the system proxy, thank you for doing that.
+
+* //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css
+* //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css
