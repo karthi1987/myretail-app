@@ -1,4 +1,3 @@
-
 import 'whatwg-fetch';
 
 import Fetch from 'utils/fetch';
@@ -56,8 +55,6 @@ export function getAppData(){
     return ( dispatch ) => {
         let type = TYPEs.APP_DATA;
         //let error = TYPEs.ERROR_MESSAGE;
-
-        //dispatch( ajax.loading( type ) );
 
         /*** FETCH ****/
 

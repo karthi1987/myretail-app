@@ -223,7 +223,12 @@ const ProductReviews = ( { Con, Pro, Reviews, totalReviews, consolidatedOverallR
 	return(
 		<div className="product-reviews">
 			<div className="reviews-header">
-				<div className="overall-rating"> { consolidatedOverallRating } <span>Overall</span></div>
+				<div className="overall-rating">
+					<div className="rating-count">
+						<span className="screen-reader-only">{ consolidatedOverallRating }</span>
+					</div>
+					<div className="overall-label">Overall</div>
+				</div>
 				<div className="total-reviews">
 				 View all
 				 	<span className="count">{ totalReviews }</span>
@@ -245,7 +250,9 @@ const ProductReviews = ( { Con, Pro, Reviews, totalReviews, consolidatedOverallR
 						positiveReview
 						&&
 						<div className="review-info positive">
-							<div className="rating"> { positiveReview.overallRating } </div>
+							<div className="rating">
+								<div className="screen-reader-only"> { positiveReview.overallRating } </div>
+							</div>
 							<div className="subject"> { positiveReview.title } </div>
 							<div className="comments"> { positiveReview.review } </div>
 							<div className="review-author">
@@ -257,7 +264,9 @@ const ProductReviews = ( { Con, Pro, Reviews, totalReviews, consolidatedOverallR
 						negativeReview
 						&&
 						<div className="review-info negative">
-							<div className="rating"> { negativeReview.overallRating } </div>
+							<div className="rating">
+								<div className="screen-reader-only">  { negativeReview.overallRating } </div>
+							</div>
 							<div className="subject"> { negativeReview.title } </div>
 							<div className="comments"> { negativeReview.review } </div>
 							<div className="review-author">

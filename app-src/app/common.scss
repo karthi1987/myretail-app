@@ -23,4 +23,10 @@
 		@extend .common-styles;
 		color: #ed143d;
 	}
+	.screen-reader-only {
+		visibility: hidden;
+		width: 1px;
+		height: 1px;
+	}
+
 }

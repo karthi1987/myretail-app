@@ -21,7 +21,7 @@ const middlewares = [ thunk ];
 
 /*
  * if we are running npm run prod, we do not add the createLogger middleware
- * createLogger will run in debug mode on pprd or qa,
+ * createLogger will run in debug mode on stage or qa,
  * just append ?debug=y to the url
  */
 if ( process.env.NODE_ENV !== 'production' ) {

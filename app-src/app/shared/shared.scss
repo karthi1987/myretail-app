@@ -16,6 +16,9 @@
 		margin-top: 118px;
 		.slick-slider {
 			height: 70px;
+			display: flex;
+			flex-direction: row;
+			flex-basis: 100%;
 			.slick-list {
 				height: 70px;
 				.slick-track {
@@ -23,14 +26,22 @@
 				}
 			}
 			.slick-next {
+				background-image: url("../../../img/product-sprite.png");
+				background-position: -133px -23px;
+				height: 25px;
+				background-repeat: no-repeat;
 				&:before {
-					content: "\2192";
+					content: "";
 					color: #ccc;
 				}
 			}
 			.slick-prev {
+				background-image: url("../../../img/product-sprite.png");
+				background-repeat: no-repeat;
+				background-position: 4px -23px;
+				height: 25px;
 				&:before {
-					content: "\2190";
+					content: "";
 					color: #ccc;
 				}
 			}

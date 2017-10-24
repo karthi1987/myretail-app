@@ -1,4 +1,4 @@
-import Ajax, * as ajax from 'utils/ajax';
+import Fetch from 'utils/fetch';
 
 /*******************************************************************************
  *

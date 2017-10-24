@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 //Slider component 
@@ -8,13 +8,26 @@ import { ProductImage } from './static-component';
 //scss
 import './shared.scss';
 
+/*
+ * Hero Image and it's Alternative image component
+ */
 
-class HeroImageAndItsChildren extends React.Component {
+class HeroImageAndItsChildren extends Component {
 
   constructor( props ){
       super( props );
       this.state = { 
-        heroImage: null
+        heroImage: null,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          speed: 1000,
+          infinite: true,
+          initialSlide: 0,
+          easing: 'linear'
+        }
       }
 
       this.setHeroImage = this.setHeroImage.bind( this );
@@ -46,7 +59,8 @@ class HeroImageAndItsChildren extends React.Component {
             imageCount
           },
           state: {
-            heroImage
+            heroImage,
+            settings
           }
         } = this;
 
@@ -57,6 +71,7 @@ class HeroImageAndItsChildren extends React.Component {
               AlternateImages
               && AlternateImages.length > 0
               && <HeroImageCarousel
+                settings= { settings }
                 images={ AlternateImages }
                 setHeroImage= { this.setHeroImage }
               />
@@ -77,26 +92,15 @@ const HeroImageWrapper = ( { heroImage } ) => {
   );
 }
 
-
 /* Image Carousel */
-const HeroImageCarousel = ( { images, setHeroImage } ) => {
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    vertical: false,
-    autoplay: false,
-    speed: 1200
-  };
+const HeroImageCarousel = ( { settings, images, setHeroImage } ) => {
 
   return(
     <div className="carousel-wrapper">
       <ul>
         <Slider { ...settings } >
            { 
-            images.map(
+            images.length > 0 && images.map(
                  ( item, index ) =>
                     <li className="carousel-list" data-index={index} key={index}>
                       <a href="#" className="image-list-info" onClick={ ( event ) => { 

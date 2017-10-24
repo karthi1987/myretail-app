@@ -14,7 +14,6 @@ import classnames from 'classnames';
 //Store
 import { AppStore } from './app-store';
 //utils
-import { connectAndMap } from 'utils/utils';
 import 'utils/mock-feeds.js';
 //action-creators
 import { getAppData, getViewportSize } from './app-actions-reducers';
@@ -24,6 +23,8 @@ import Nav from './nav/nav';
 import Footer from './footer/footer';
 
 import { ErrorMessage } from './shared/static-component';
+
+import { APP_CONSTANTS } from './app-constants';
 
 //Scss
 import './common.scss';
@@ -72,7 +73,7 @@ class TargetApp extends React.Component {
 
         if ( !appDataLoaded ) {
             return (
-                <div className="app-loader"> Please wait, data loading... </div>
+                <div className="app-loader"> { APP_CONSTANTS.DATA_LOADING } </div>
             );
         }
 

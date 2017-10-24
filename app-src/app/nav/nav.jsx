@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Slider from 'react-slick';
-import $ from 'jquery';
 
-//Shared Component
+/*
+ * Shared Component
+ */ 
 import { 
 	ProductTitle, 
 	ProductPrice, 
@@ -16,13 +16,14 @@ import {
 	ProductReviews,
 	NullComponent 
 } from '../shared/static-component';
-
 import HeroImageAndItsChildren from '../shared/image-carousel';
 
-//scss
+/*
+ * scss
+ */
 import './nav.scss';
 
-class Nav extends React.Component {
+class Nav extends Component {
 
 	constructor( props ){
         super( props );
@@ -102,7 +103,6 @@ class Nav extends React.Component {
     				}
     			</div>
 	    	</div>
-
         )
     }
 
