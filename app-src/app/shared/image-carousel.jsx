@@ -88,6 +88,7 @@ const HeroImageWrapper = ( { heroImage } ) => {
   return(
     <div className="hero-image">
       <ProductImage source={ heroImage } />
+      <div className="product-zoom-icon"></div>
     </div>
   );
 }
